@@ -1,0 +1,26 @@
+.hotels-page { padding-bottom: var(--space-16); }
+
+.hotels-page-header {
+  padding: var(--space-10) 0 var(--space-8);
+  text-align: center;
+}
+
+.hotels-title {
+  font-size: clamp(1.8rem, 4vw, 3rem);
+  margin-bottom: var(--space-3);
+}
+
+.hotels-subtitle {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+.error-state {
+  text-align: center;
+  padding: var(--space-12);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--accent-rose);
+}
