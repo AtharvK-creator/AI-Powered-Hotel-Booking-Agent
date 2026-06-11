@@ -1,8 +1,10 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { useEffect, ReactNode } from 'react';
+import { useEffect, useState, ReactNode } from 'react';
 import { useAuthStore } from './store/authStore';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import AuraVoiceAssistant from './components/ui/AuraVoiceAssistant';
+import AuraSplash from './components/ui/AuraSplash';
 import LandingPage from './pages/LandingPage';
 import LoginPage from './pages/LoginPage';
 import RegisterPage from './pages/RegisterPage';
@@ -29,6 +31,7 @@ function AdminRoute({ children }: { children: ReactNode }) {
 
 export default function App() {
   const { initialize } = useAuthStore();
+  const [showSplash, setShowSplash] = useState(true);
 
   useEffect(() => {
     initialize();
@@ -36,6 +39,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      {showSplash && <AuraSplash onComplete={() => setShowSplash(false)} />}
       <Navbar />
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -62,6 +66,7 @@ export default function App() {
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
       <Footer />
+      <AuraVoiceAssistant />
     </BrowserRouter>
   );
 }

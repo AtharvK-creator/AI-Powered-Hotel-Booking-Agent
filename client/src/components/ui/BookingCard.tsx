@@ -18,10 +18,10 @@ function calcNights(checkIn: string, checkOut: string): number {
 }
 
 const STATUS_ICON: Record<string, string> = {
-  confirmed: '✅',
-  modified: '✏️',
-  cancelled: '❌',
-  completed: '🏁',
+  confirmed: '✦',
+  modified: '✦',
+  cancelled: '✦',
+  completed: '✦',
 };
 
 export default function BookingCard({ booking, onCancel, onModify }: Props) {
@@ -51,7 +51,7 @@ export default function BookingCard({ booking, onCancel, onModify }: Props) {
           <div>
             <h3 className="booking-hotel-name">{booking.hotel_name}</h3>
             <p className="booking-hotel-location">
-              📍 {booking.hotel_city}, {booking.hotel_country}
+              {booking.hotel_city}, {booking.hotel_country}
             </p>
           </div>
           <span className={`badge badge-${booking.status}`}>
@@ -82,7 +82,7 @@ export default function BookingCard({ booking, onCancel, onModify }: Props) {
           </div>
           <div className="booking-detail">
             <span className="detail-label">Guests</span>
-            <span className="detail-value">👤 {booking.guests}</span>
+            <span className="detail-value">{booking.guests} Guests</span>
           </div>
         </div>
 
@@ -106,7 +106,7 @@ export default function BookingCard({ booking, onCancel, onModify }: Props) {
                   onClick={() => onModify(booking.id)}
                   className="btn btn-secondary btn-sm"
                 >
-                  ✏️ Modify
+                  Modify
                 </button>
               )}
               {onCancel && (

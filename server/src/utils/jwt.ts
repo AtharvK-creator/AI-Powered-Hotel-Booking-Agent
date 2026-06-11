@@ -39,7 +39,7 @@ export function invalidateRefreshToken(token: string): void {
 
 export function isRefreshTokenValid(token: string): boolean {
   const row = db.prepare(
-    'SELECT id FROM refresh_tokens WHERE token = ? AND expires_at > CURRENT_TIMESTAMP'
+    'SELECT id FROM refresh_tokens WHERE token = ? AND datetime(expires_at) > datetime(\'now\')'
   ).get(token);
   return !!row;
 }

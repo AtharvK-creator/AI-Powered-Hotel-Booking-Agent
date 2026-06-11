@@ -85,7 +85,7 @@ export default function HotelDetailPage() {
   if (!hotel) {
     return (
       <div className="page-content empty-state">
-        <div className="empty-state-icon">🏨</div>
+        <div className="empty-state-icon">✦</div>
         <h2>Hotel not found</h2>
         <Link to="/hotels" className="btn btn-primary">Browse Hotels</Link>
       </div>
@@ -127,7 +127,7 @@ export default function HotelDetailPage() {
           <div className="hotel-info-header">
             <div>
               <h1 className="hotel-detail-name">{hotel.name}</h1>
-              <p className="hotel-detail-location">📍 {hotel.address}</p>
+              <p className="hotel-detail-location">{hotel.address}</p>
             </div>
             <div className="hotel-detail-rating">
               <StarRating rating={hotel.rating} />
@@ -163,7 +163,7 @@ export default function HotelDetailPage() {
                     <div>
                       <h4 className="room-type-name">{room.type}</h4>
                       <p className="room-desc">{room.description}</p>
-                      <p className="room-capacity">👤 Up to {room.capacity} guests</p>
+                      <p className="room-capacity">Up to {room.capacity} Guests</p>
                     </div>
                     <div className="room-price-block">
                       <span className="room-price">${room.price}</span>
@@ -171,7 +171,7 @@ export default function HotelDetailPage() {
                     </div>
                   </div>
                   {selectedRoom === room.type && (
-                    <div className="room-selected-badge">✓ Selected</div>
+                    <div className="room-selected-badge">Selected</div>
                   )}
                 </div>
               ))}
@@ -186,7 +186,7 @@ export default function HotelDetailPage() {
 
             {bookingSuccess ? (
               <div className="booking-success">
-                <div className="success-icon">🎉</div>
+                <div className="success-icon">✦</div>
                 <p>{bookingSuccess}</p>
                 <Link to="/bookings" className="btn btn-primary btn-full">View My Bookings</Link>
                 <button onClick={() => setBookingSuccess('')} className="btn btn-ghost btn-sm">

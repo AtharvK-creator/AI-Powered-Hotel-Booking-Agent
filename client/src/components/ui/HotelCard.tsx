@@ -24,7 +24,7 @@ export default function HotelCard({ hotel }: Props) {
         />
         <div className="hotel-card-badge">
           <span className="hotel-rating-badge">
-            ⭐ {hotel.rating.toFixed(1)}
+            {hotel.rating.toFixed(1)} ★
           </span>
         </div>
       </div>
@@ -33,14 +33,13 @@ export default function HotelCard({ hotel }: Props) {
         <div className="hotel-card-header">
           <h3 className="hotel-card-name">{hotel.name}</h3>
           <div className="hotel-card-location">
-            <span>📍</span>
             <span>{hotel.city}, {hotel.country}</span>
           </div>
         </div>
 
         <div className="hotel-card-stars">
           <StarRating rating={hotel.rating} />
-          <span className="hotel-card-rating-text">{hotel.rating.toFixed(1)}</span>
+          <span className="hotel-card-rating-text">{hotel.rating.toFixed(1)} Rating</span>
         </div>
 
         <p className="hotel-card-description">{hotel.description.slice(0, 100)}...</p>

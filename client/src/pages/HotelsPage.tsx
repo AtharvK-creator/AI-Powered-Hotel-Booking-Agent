@@ -46,12 +46,12 @@ export default function HotelsPage() {
       <div className="container">
         <div className="hotels-page-header">
           <h1 className="hotels-title display-heading">
-            Discover <span className="gradient-text">World-Class</span> Hotels
+            The Luxury <span className="gold-text">Collection</span>
           </h1>
           <p className="hotels-subtitle">
             {hotels.length > 0
-              ? `${hotels.length} properties found worldwide`
-              : 'Search to find your perfect stay'}
+              ? `${hotels.length} exquisite estates found in India`
+              : 'Discover your perfect stay'}
           </p>
         </div>
 
@@ -64,14 +64,14 @@ export default function HotelsPage() {
           </div>
         ) : error ? (
           <div className="error-state">
-            <p>⚠️ {error}</p>
+            <p>{error}</p>
             <button onClick={() => fetchHotels()} className="btn btn-primary">
               Try Again
             </button>
           </div>
         ) : hotels.length === 0 ? (
           <div className="empty-state">
-            <div className="empty-state-icon">🔍</div>
+            <div className="empty-state-icon">✦</div>
             <h3 className="empty-state-title">No hotels found</h3>
             <p>Try adjusting your search filters</p>
           </div>

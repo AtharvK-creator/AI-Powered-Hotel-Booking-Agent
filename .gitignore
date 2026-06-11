@@ -20,3 +20,11 @@ build/
 
 # Logs
 *.log
+
+# SQLite
+*.sqlite
+*.sqlite-shm
+*.sqlite-wal
+database.sqlite
+database.sqlite-shm
+database.sqlite-wal

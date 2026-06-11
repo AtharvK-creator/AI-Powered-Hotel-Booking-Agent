@@ -6,9 +6,9 @@ export default function Footer() {
     <footer className="footer">
       <div className="container footer-inner">
         <div className="footer-brand">
-          <span className="brand-icon">🏨</span>
-          <span className="brand-name">Hotel<span className="gradient-text">AI</span></span>
-          <p className="footer-tagline">Your AI-powered hotel booking companion</p>
+          <span className="brand-icon">✦</span>
+          <span className="brand-name">AURA <span className="gold-text">AI</span></span>
+          <p className="footer-tagline">Curating five-star luxury travel experiences across India</p>
         </div>
         <div className="footer-links-group">
           <h4>Explore</h4>
@@ -24,7 +24,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <p>© 2024 HotelAI. Built with ❤️ for premium travel experiences.</p>
+        <p>© 2026 AURA Luxury Hotels. Curating five-star luxury travel experiences across India.</p>
       </div>
     </footer>
   );

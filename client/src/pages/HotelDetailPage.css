@@ -60,8 +60,9 @@
 
 .hotel-detail-name {
   font-family: var(--font-display);
-  font-size: 2rem;
-  font-weight: 700;
+  font-size: 2.2rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
 }
 
 .hotel-detail-location {
@@ -130,7 +131,7 @@
 }
 
 .room-card:hover { border-color: var(--accent-primary); }
-.room-card.selected { border-color: var(--accent-primary); background: rgba(99,102,241,0.08); }
+.room-card.selected { border-color: var(--accent-primary); background: rgba(197, 168, 128, 0.04); }
 
 .room-header {
   display: flex;
@@ -139,7 +140,7 @@
   gap: var(--space-4);
 }
 
-.room-type-name { font-weight: 700; font-size: 1rem; margin-bottom: var(--space-1); }
+.room-type-name { font-family: var(--font-display); font-weight: 500; font-size: 1.15rem; margin-bottom: var(--space-1); }
 
 .room-desc {
   color: var(--text-secondary);
@@ -158,8 +159,9 @@
 
 .room-price {
   font-size: 1.3rem;
-  font-weight: 800;
+  font-weight: 500;
   color: var(--accent-primary);
+  font-family: var(--font-display);
 }
 
 .room-per { font-size: 0.8rem; color: var(--text-muted); }
@@ -169,11 +171,13 @@
   top: var(--space-2);
   right: var(--space-2);
   background: var(--accent-primary);
-  color: white;
+  color: var(--text-inverse);
   padding: 2px var(--space-2);
-  border-radius: var(--radius-full);
-  font-size: 0.72rem;
-  font-weight: 700;
+  border-radius: var(--radius-sm);
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-weight: 600;
 }
 
 /* Booking Form */
@@ -234,6 +238,7 @@
 
 .success-icon {
   font-size: 3rem;
+  color: var(--accent-primary);
 }
 
 @media (max-width: 900px) {

@@ -75,6 +75,45 @@ export function initializeDatabase(): void {
       created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
       FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
     );
+
+    CREATE TABLE IF NOT EXISTS ai_metrics (
+      id TEXT PRIMARY KEY,
+      user_id TEXT,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
+      provider TEXT NOT NULL,
+      cache_hit INTEGER NOT NULL DEFAULT 0,
+      response_time INTEGER NOT NULL,
+      success INTEGER NOT NULL DEFAULT 1,
+      retry_count INTEGER NOT NULL DEFAULT 0,
+      fallback_triggered INTEGER NOT NULL DEFAULT 0,
+      input_tokens INTEGER DEFAULT 0,
+      output_tokens INTEGER DEFAULT 0,
+      total_tokens INTEGER DEFAULT 0
+    );
+
+    CREATE TABLE IF NOT EXISTS user_journey_events (
+      id TEXT PRIMARY KEY,
+      user_id TEXT,
+      event_type TEXT NOT NULL,
+      metadata TEXT NOT NULL DEFAULT '{}',
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
+
+    CREATE TABLE IF NOT EXISTS user_memories (
+      id TEXT PRIMARY KEY,
+      user_id TEXT UNIQUE NOT NULL,
+      memory_data TEXT NOT NULL DEFAULT '{}',
+      updated_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+      FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+    );
+
+    CREATE TABLE IF NOT EXISTS audit_logs (
+      id TEXT PRIMARY KEY,
+      user_id TEXT,
+      action TEXT NOT NULL,
+      details TEXT,
+      timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+    );
   `);
 
   console.log('✅ Database initialized');

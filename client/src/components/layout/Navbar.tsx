@@ -20,8 +20,8 @@ export default function Navbar() {
     <nav className="navbar">
       <div className="container navbar-inner">
         <Link to="/" className="navbar-brand">
-          <span className="brand-icon">🏨</span>
-          <span className="brand-name">Hotel<span className="gradient-text">AI</span></span>
+          <span className="brand-icon">✦</span>
+          <span className="brand-name">AURA <span className="gold-text">AI</span></span>
         </Link>
 
         <div className="navbar-links">

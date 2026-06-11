@@ -1,11 +1,12 @@
 import { Router } from 'express';
 import { authController } from '../controllers/authController';
 import { authenticate } from '../middleware/auth';
+import { securityMiddleware } from '../middleware/security';
 
 const router = Router();
 
 router.post('/register', authController.register);
-router.post('/login', authController.login);
+router.post('/login', securityMiddleware.rateLimitFailedLogins, authController.login);
 router.post('/refresh', authController.refresh);
 router.post('/logout', authController.logout);
 router.get('/profile', authenticate, authController.getProfile);

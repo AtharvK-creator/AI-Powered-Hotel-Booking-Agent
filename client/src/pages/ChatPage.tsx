@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from 'react';
 import { chatApi } from '../api/chat';
 import { ChatMessage } from '../types';
+import { useAuthStore } from '../store/authStore';
 import './ChatPage.css';
 
 const SUGGESTIONS = [
-  'Find hotels in Paris under $400',
-  'Show me luxury hotels in Dubai',
+  'Find luxury hotels in Udaipur',
+  'Show me palaces in Jaipur',
   'What are my current bookings?',
-  'Book a hotel in Tokyo for 2 guests next week',
+  'Book The Taj Mahal Palace for next week',
   'Cancel my latest booking',
 ];
 
@@ -18,6 +19,7 @@ export default function ChatPage() {
   const [isLoading, setIsLoading] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const { user } = useAuthStore();
 
   useEffect(() => {
     chatApi.getHistory()
@@ -51,7 +53,7 @@ export default function ChatPage() {
         ...prev,
         {
           role: 'assistant',
-          content: `⚠️ ${msg || 'Something went wrong. Please check your GROK_API_KEY in the .env file.'}`,
+          content: `Connection Error: ${msg || 'Unable to connect to Aura Concierge. Please check your GEMINI_API_KEY in the environment.'}`,
         },
       ]);
     } finally {
@@ -78,8 +80,8 @@ export default function ChatPage() {
         {/* Sidebar */}
         <aside className="chat-sidebar glass-panel">
           <div className="sidebar-header">
-            <h2 className="sidebar-title">🤖 AI Assistant</h2>
-            <p className="sidebar-subtitle">Powered by Grok</p>
+            <h2 className="sidebar-title">✦ Aura Concierge</h2>
+            <p className="sidebar-subtitle">Powered by Gemini</p>
           </div>
 
           <div className="sidebar-section">
@@ -101,19 +103,19 @@ export default function ChatPage() {
           <div className="sidebar-capabilities">
             <h4 className="sidebar-section-title">Capabilities</h4>
             <ul className="capability-list">
-              <li>🔍 Search hotels</li>
-              <li>📋 View hotel details</li>
-              <li>🏨 Create bookings</li>
-              <li>✏️ Modify bookings</li>
-              <li>❌ Cancel bookings</li>
-              <li>📖 View your bookings</li>
-              <li>📧 Send email notifications</li>
+              <li>✦ Search hotels</li>
+              <li>✦ View hotel details</li>
+              <li>✦ Create bookings</li>
+              <li>✦ Modify bookings</li>
+              <li>✦ Cancel bookings</li>
+              <li>✦ View your bookings</li>
+              <li>✦ Send email notifications</li>
             </ul>
           </div>
 
           {messages.length > 0 && (
             <button onClick={handleClear} className="btn btn-ghost btn-sm clear-btn">
-              🗑️ Clear Chat
+              Clear Chat
             </button>
           )}
         </aside>
@@ -128,11 +130,11 @@ export default function ChatPage() {
               </div>
             ) : messages.length === 0 ? (
               <div className="chat-welcome">
-                <div className="welcome-icon">🤖</div>
-                <h3 className="welcome-title">Hello! I'm your Hotel AI Assistant</h3>
+                <div className="welcome-icon">✦</div>
+                <h3 className="welcome-title">Welcome to AURA Concierge</h3>
                 <p className="welcome-subtitle">
-                  I can search hotels, create bookings, and manage your reservations.
-                  Try one of the suggestions on the left, or just ask me anything!
+                  I can curate hotel listings, coordinate bookings, and manage your reservation details. 
+                  Select one of the suggested prompts or converse with me directly.
                 </p>
               </div>
             ) : (
@@ -142,14 +144,14 @@ export default function ChatPage() {
                   className={`chat-message ${msg.role === 'user' ? 'message-user' : 'message-ai'} animate-fade`}
                 >
                   {msg.role === 'assistant' && (
-                    <div className="message-avatar">🤖</div>
+                    <div className="message-avatar">✦</div>
                   )}
                   <div className="message-bubble">
                     <p className="message-text">{msg.content}</p>
                   </div>
                   {msg.role === 'user' && (
                     <div className="message-avatar user-avatar-sm">
-                      👤
+                      {user?.name?.charAt(0).toUpperCase() || 'U'}
                     </div>
                   )}
                 </div>
@@ -158,7 +160,7 @@ export default function ChatPage() {
 
             {isLoading && (
               <div className="chat-message message-ai animate-fade">
-                <div className="message-avatar">🤖</div>
+                <div className="message-avatar">✦</div>
                 <div className="message-bubble typing-indicator">
                   <span /><span /><span />
                 </div>
@@ -186,7 +188,7 @@ export default function ChatPage() {
               onClick={() => sendMessage(input)}
               disabled={isLoading || !input.trim()}
             >
-              {isLoading ? <span className="spinner spinner-sm" /> : '➤'}
+              {isLoading ? <span className="spinner spinner-sm" /> : '→'}
             </button>
           </div>
           <p className="chat-hint">Press Enter to send · Shift+Enter for new line</p>

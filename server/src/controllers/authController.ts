@@ -10,6 +10,7 @@ import {
 } from '../utils/jwt';
 import { createError } from '../middleware/errorHandler';
 import { AuthRequest } from '../middleware/auth';
+import { securityMiddleware } from '../middleware/security';
 
 export const authController = {
   async register(req: Request, res: Response, next: NextFunction) {
@@ -41,13 +42,17 @@ export const authController = {
   },
 
   async login(req: Request, res: Response, next: NextFunction) {
+    const ip = req.ip || req.socket.remoteAddress || 'unknown';
     try {
       const { email, password } = req.body;
 
       const user = userModel.findByEmail(email);
       if (!user || !userModel.verifyPassword(user, password)) {
+        securityMiddleware.trackFailedLogin(ip);
         throw createError('Invalid email or password', 401);
       }
+
+      securityMiddleware.clearFailedLogin(ip);
 
       const payload = { userId: user.id, email: user.email, role: user.role };
       const accessToken = signAccessToken(payload);

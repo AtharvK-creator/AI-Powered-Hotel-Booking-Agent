@@ -14,13 +14,16 @@ export const env = {
 
   grokApiKey: process.env.GROK_API_KEY || '',
   geminiApiKey: (process.env.GEMINI_API_KEY || '').trim(),
+  groqApiKey: (process.env.GROQ_API_KEY || '').trim(),
+  openrouterApiKey: (process.env.OPENROUTER_API_KEY || '').trim(),
+  redisUrl: process.env.REDIS_URL || 'redis://127.0.0.1:6379',
 
   emailEnabled: process.env.EMAIL_ENABLED === 'true',
   smtpHost: process.env.SMTP_HOST || 'smtp.gmail.com',
   smtpPort: parseInt(process.env.SMTP_PORT || '587', 10),
   smtpUser: process.env.SMTP_USER || '',
   smtpPass: process.env.SMTP_PASS || '',
-  emailFrom: process.env.EMAIL_FROM || 'noreply@hotelbooking.ai',
+  emailFrom: process.env.SMTP_FROM || process.env.EMAIL_FROM || 'noreply@hotelbooking.ai',
 
   dbPath: process.env.DB_PATH || './database.sqlite',
 };
